@@ -4,13 +4,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        "blue1": "var(--blue1)",
+      },
       width:{
-        '300':'300px',
-        '350':'350px',
-        '500':'500px',
-        '800':'800px',
-        '850':'850px',
-        '400':'400px'
+    
+        '420':'420px'
       }
     },
     maxHeight: {

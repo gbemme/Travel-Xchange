@@ -1,15 +1,23 @@
 <template>
-  <hello-world />
+  <div >
+    <NavBar/>
+    <search-bar/>
+    <properties-results/>
+    
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+import NavBar from '@/components/nav/NavBar.vue'
+import SearchBar from '@/components/nav/SearchBar.vue'
+import PropertiesResults from '@/components/PropertiesResults.vue'
+export default {
+  components: { NavBar, SearchBar, PropertiesResults, },
+    name:'HomeView'
 
-  export default {
-    name: 'HomeView',
-
-    components: {
-      HelloWorld,
-    },
-  }
+}
 </script>
+
+<style>
+
+</style>
