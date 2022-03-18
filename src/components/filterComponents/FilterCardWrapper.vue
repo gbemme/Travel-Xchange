@@ -5,6 +5,11 @@
               <component  :is="getComponent(data.type)"/>
           </template>
       </filter-card>
+       <div class="tw-flex md:tw-hidden tw-p-5">
+            <v-btn class="tw-w-3/6 tw-h-12" outlined @click="$emit('close')"  color="#002D63">Clear</v-btn>
+            <v-btn depressed  class="ml-4 tw-w-3/6 tw-h-12 white--text font-weight-bolder" @click="$emit('close')" color="#002D63">Filter</v-btn>
+
+        </div>
   </div>
 </template>
 
@@ -13,16 +18,20 @@ import FacilitiesComponent from './FacilitiesComponent.vue'
 import FilterCard from './FilterCard.vue'
 import HotelNameSearch from './HotelNameSearch.vue'
 import MealPlanComponent from './MealPlanComponent.vue'
+import PriceComponent from './PriceComponent.vue'
 import PropertyTypeComponent from './PropertyTypeComponent.vue'
 import ReservationComponent from './ReservationComponent.vue'
 import ReviewComponent from './ReviewComponent.vue'
 import StarRatingComponent from './StarRatingComponent.vue'
 export default {
-  components: { FilterCard, ReviewComponent, ReservationComponent, MealPlanComponent, StarRatingComponent, HotelNameSearch, PropertyTypeComponent, FacilitiesComponent },
+  components: { FilterCard, ReviewComponent, ReservationComponent, MealPlanComponent, StarRatingComponent, HotelNameSearch, PropertyTypeComponent, FacilitiesComponent, PriceComponent },
     name:'FilterCardWrapper',
     data(){
         return{
             items:[
+                 {
+                    type:'Price per night'
+                },
                 {
                     type:'Reviews'
                 },
@@ -54,6 +63,8 @@ export default {
     methods:{
         getComponent(type){
              switch (type) {
+        case "Price per night":
+            return PriceComponent
         case "Reviews":
          return ReviewComponent;
         case "Reservation policy":

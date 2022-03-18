@@ -1,6 +1,8 @@
 <template>
-  <div>
-      <h3 class="tw-py-5">Singapore: 9999 properties found</h3>
+  <div class="">
+      <h3 v-if="getAllSearchResult.outlets" class="tw-ml-3 md:tw-ml-0 tw-py-5">{{search.split(',')[0]}}: {{getAllSearchResult.outlets.availability.results.length}} properties found</h3>
+      <h3 v-else class="tw-py-5 tw-ml-3 md:tw-ml-0">{{search.split(',')[0]}}: 0 properties found</h3>
+
       <div class="md:tw-flex tw-mx-3 tw-mb-4 tw-items-center tw-hidden">
           <v-row class="tw-flex tw-items-center tw-pb-4  ">
           <v-col   v-for="(data,i) in filterList"  :key="i" cols="12" md="3" @click="activeFilter=data.name"  :class="activeFilter===data.name?'filter-active':'filter-no-active'" class=" tw-cursor-pointer tw-py-3.5  filter">
@@ -17,7 +19,7 @@
       </div>
       <div class="md:tw-hidden tw-flex">
           <div v-for="(data,i) in mobileFilter"  :key="i" class="tw-flex tw-w-3/6 tw-items-center tw-pb-4 tw-mr-0.5">
-          <div @click="activeFilter=data.name"  :class="activeFilter===data.name?'filter-active':'filter-no-active'" class=" tw-w-full  tw-cursor-pointer tw-py-3.5 filter">
+          <div @click="toggleDisplay(data)"  :class="activeFilter===data.name?'filter-active':'filter-no-active'" class=" tw-w-full  tw-cursor-pointer tw-py-3.5 filter">
               <div class="tw-flex tw-items-center">
               <v-icon class="tw-mr-3">{{data.icon}}</v-icon>
 
@@ -28,11 +30,12 @@
           </div>
 
       </div>
-
+       
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
     name:"FilterNav",
     data(){
@@ -70,6 +73,19 @@ export default {
             ],
             activeFilter:'Popularity'
             
+        }
+    },
+    props:{
+        properties:[Number],
+        search:[String]
+    },
+    computed:{
+      ...mapGetters(['getAllSearchResult','getAllLocation','getErrorStatus','getSearchValue'])
+    },
+    methods:{
+        toggleDisplay(data){
+            this.activeFilter=data.name
+            this.$emit('toggle')
         }
     }
 

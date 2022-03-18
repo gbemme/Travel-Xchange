@@ -1,6 +1,6 @@
 <template>
    <v-rating
-      :value="rating?rating:'No rating'"
+      :value="rating"
       color="#E9BF2D"
        small
        readonly
@@ -13,7 +13,7 @@
 export default {
 name:'RatingsComponent',
 props:{
-    rating:[Number]
+    rating:[Number,String]
 }
 
 }
