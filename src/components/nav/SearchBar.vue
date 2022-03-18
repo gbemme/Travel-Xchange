@@ -9,12 +9,12 @@
     >
      <div class=" tw-py-2.5 tw-bg-blue1k md:tw-flex tw-hidden tw-justify-center tw-items-center">
       <div class="tw-mr-2.5">
-          <v-autocomplete  v-model="search" :items="getAllLocation" hide-details   prepend-inner-icon="mdi-magnify" item-text="label"
+          <v-autocomplete  v-model="search"  :items="getAllLocation" hide-details   prepend-inner-icon="mdi-magnify" item-text="label"
       item-value="cityCode" label="Search" class="tw-w-420" solo>
       <template v-slot:item="{ item }">
         <v-icon>mdi-map-marker-outline</v-icon>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.label"  @click="displayResult(item.cityCode,item.label)"></v-list-item-title>
+        <v-list-item-content @click="displayResult(item.cityCode,item.label)">
+          <v-list-item-title v-text="item.label"  ></v-list-item-title>
         </v-list-item-content>
       </template>
       </v-autocomplete>
